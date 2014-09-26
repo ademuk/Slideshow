@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7627EE0D19D4E33100676978 /* MediaItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7627EE0C19D4E33100676978 /* MediaItemModel.m */; };
 		76299BA019D4C8A600992CAB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76299B9F19D4C8A600992CAB /* main.m */; };
 		76299BA319D4C8A600992CAB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76299BA219D4C8A600992CAB /* AppDelegate.m */; };
 		76299BA519D4C8A600992CAB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76299BA419D4C8A600992CAB /* Images.xcassets */; };
@@ -25,6 +26,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7627EE0B19D4E33100676978 /* MediaItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaItemModel.h; sourceTree = "<group>"; };
+		7627EE0C19D4E33100676978 /* MediaItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaItemModel.m; sourceTree = "<group>"; };
 		76299B9A19D4C8A600992CAB /* Slideshow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slideshow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76299B9E19D4C8A600992CAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76299B9F19D4C8A600992CAB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -78,6 +81,8 @@
 			children = (
 				76299BA119D4C8A600992CAB /* AppDelegate.h */,
 				76299BA219D4C8A600992CAB /* AppDelegate.m */,
+				7627EE0B19D4E33100676978 /* MediaItemModel.h */,
+				7627EE0C19D4E33100676978 /* MediaItemModel.m */,
 				76299BA419D4C8A600992CAB /* Images.xcassets */,
 				76299BA619D4C8A600992CAB /* MainMenu.xib */,
 				76299B9D19D4C8A600992CAB /* Supporting Files */,
@@ -210,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7627EE0D19D4E33100676978 /* MediaItemModel.m in Sources */,
 				76299BA319D4C8A600992CAB /* AppDelegate.m in Sources */,
 				76299BA019D4C8A600992CAB /* main.m in Sources */,
 			);
@@ -398,6 +404,7 @@
 				76299BB919D4C8A600992CAB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		76299BBA19D4C8A600992CAB /* Build configuration list for PBXNativeTarget "SlideshowTests" */ = {
 			isa = XCConfigurationList;
@@ -406,6 +413,7 @@
 				76299BBC19D4C8A600992CAB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
