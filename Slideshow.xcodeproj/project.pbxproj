@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7627EE0D19D4E33100676978 /* MediaItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7627EE0C19D4E33100676978 /* MediaItemModel.m */; };
 		76299BA019D4C8A600992CAB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76299B9F19D4C8A600992CAB /* main.m */; };
 		76299BA319D4C8A600992CAB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76299BA219D4C8A600992CAB /* AppDelegate.m */; };
 		76299BA519D4C8A600992CAB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76299BA419D4C8A600992CAB /* Images.xcassets */; };
 		76299BA819D4C8A600992CAB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76299BA619D4C8A600992CAB /* MainMenu.xib */; };
 		76299BB419D4C8A600992CAB /* SlideshowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 76299BB319D4C8A600992CAB /* SlideshowTests.m */; };
+		76CDF1E419D8A00600433B55 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CDF1E119D8A00600433B55 /* MyViewController.m */; };
+		76CDF1E519D8A00600433B55 /* MyWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CDF1E319D8A00600433B55 /* MyWindowController.m */; };
+		76CDF1F119D8A58900433B55 /* Collection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76CDF1ED19D8A58900433B55 /* Collection.xib */; };
+		76CDF1F219D8A58900433B55 /* IconViewPrototype.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76CDF1EF19D8A58900433B55 /* IconViewPrototype.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,8 +29,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7627EE0B19D4E33100676978 /* MediaItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaItemModel.h; sourceTree = "<group>"; };
-		7627EE0C19D4E33100676978 /* MediaItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaItemModel.m; sourceTree = "<group>"; };
 		76299B9A19D4C8A600992CAB /* Slideshow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slideshow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76299B9E19D4C8A600992CAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76299B9F19D4C8A600992CAB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -38,6 +39,12 @@
 		76299BAD19D4C8A600992CAB /* SlideshowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlideshowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		76299BB219D4C8A600992CAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76299BB319D4C8A600992CAB /* SlideshowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlideshowTests.m; sourceTree = "<group>"; };
+		76CDF1E019D8A00600433B55 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
+		76CDF1E119D8A00600433B55 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
+		76CDF1E219D8A00600433B55 /* MyWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWindowController.h; sourceTree = "<group>"; };
+		76CDF1E319D8A00600433B55 /* MyWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWindowController.m; sourceTree = "<group>"; };
+		76CDF1EE19D8A58900433B55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Collection.xib; sourceTree = "<group>"; };
+		76CDF1F019D8A58900433B55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IconViewPrototype.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,10 +88,14 @@
 			children = (
 				76299BA119D4C8A600992CAB /* AppDelegate.h */,
 				76299BA219D4C8A600992CAB /* AppDelegate.m */,
-				7627EE0B19D4E33100676978 /* MediaItemModel.h */,
-				7627EE0C19D4E33100676978 /* MediaItemModel.m */,
-				76299BA419D4C8A600992CAB /* Images.xcassets */,
+				76CDF1E219D8A00600433B55 /* MyWindowController.h */,
+				76CDF1E319D8A00600433B55 /* MyWindowController.m */,
+				76CDF1E019D8A00600433B55 /* MyViewController.h */,
+				76CDF1E119D8A00600433B55 /* MyViewController.m */,
 				76299BA619D4C8A600992CAB /* MainMenu.xib */,
+				76CDF1ED19D8A58900433B55 /* Collection.xib */,
+				76CDF1EF19D8A58900433B55 /* IconViewPrototype.xib */,
+				76299BA419D4C8A600992CAB /* Images.xcassets */,
 				76299B9D19D4C8A600992CAB /* Supporting Files */,
 			);
 			path = Slideshow;
@@ -196,6 +207,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76CDF1F219D8A58900433B55 /* IconViewPrototype.xib in Resources */,
+				76CDF1F119D8A58900433B55 /* Collection.xib in Resources */,
 				76299BA519D4C8A600992CAB /* Images.xcassets in Resources */,
 				76299BA819D4C8A600992CAB /* MainMenu.xib in Resources */,
 			);
@@ -215,7 +228,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7627EE0D19D4E33100676978 /* MediaItemModel.m in Sources */,
+				76CDF1E419D8A00600433B55 /* MyViewController.m in Sources */,
+				76CDF1E519D8A00600433B55 /* MyWindowController.m in Sources */,
 				76299BA319D4C8A600992CAB /* AppDelegate.m in Sources */,
 				76299BA019D4C8A600992CAB /* main.m in Sources */,
 			);
@@ -246,6 +260,22 @@
 				76299BA719D4C8A600992CAB /* Base */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		76CDF1ED19D8A58900433B55 /* Collection.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				76CDF1EE19D8A58900433B55 /* Base */,
+			);
+			name = Collection.xib;
+			sourceTree = "<group>";
+		};
+		76CDF1EF19D8A58900433B55 /* IconViewPrototype.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				76CDF1F019D8A58900433B55 /* Base */,
+			);
+			name = IconViewPrototype.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

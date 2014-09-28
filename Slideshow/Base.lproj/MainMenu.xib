@@ -675,70 +675,33 @@
                 <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q6N-a2-e4k">
-                        <rect key="frame" x="-1" y="-1" width="482" height="326"/>
-                        <clipView key="contentView" ambiguous="YES" misplaced="YES" id="K7b-gd-aIO">
-                            <rect key="frame" x="1" y="1" width="248" height="158"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <collectionView ambiguous="YES" id="vAf-rE-pl0">
-                                    <rect key="frame" x="0.0" y="0.0" width="248" height="158"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <connections>
-                                        <outlet property="itemPrototype" destination="rl8-s9-Zeh" id="p7u-BQ-ocn"/>
-                                    </connections>
-                                </collectionView>
-                            </subviews>
-                        </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="K67-m0-gBM">
-                            <rect key="frame" x="1" y="144" width="233" height="15"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="uDb-j4-XR1">
-                            <rect key="frame" x="234" y="1" width="15" height="143"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                    </scrollView>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QUE-qJ-cEs">
-                        <rect key="frame" x="1" y="325" width="119" height="32"/>
+                        <rect key="frame" x="0.0" y="326" width="132" height="32"/>
                         <buttonCell key="cell" type="push" title="Choose source" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bBp-uZ-Prz">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
+                            <connections>
+                                <action selector="chooseSource:" target="hDJ-5p-Dhe" id="VK2-gY-JOK"/>
+                            </connections>
                         </buttonCell>
-                        <connections>
-                            <action selector="chooseSource:" target="Voe-Tx-rLC" id="XEN-tG-g3B"/>
-                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7LE-jm-E7a">
-                        <rect key="frame" x="355" y="325" width="124" height="32"/>
+                        <rect key="frame" x="356" y="326" width="124" height="32"/>
                         <buttonCell key="cell" type="push" title="Start Slideshow" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4Ib-j5-yWe">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FeA-cn-m65">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="327"/>
+                    </customView>
                 </subviews>
             </view>
         </window>
-        <collectionViewItem id="rl8-s9-Zeh">
+        <customObject id="hDJ-5p-Dhe" userLabel="WindowController" customClass="MyWindowController">
             <connections>
-                <outlet property="view" destination="DvU-XZ-uzg" id="S5Z-Oi-q6L"/>
+                <outlet property="myTargetView" destination="FeA-cn-m65" id="Udd-Jr-FaN"/>
             </connections>
-        </collectionViewItem>
-        <view id="DvU-XZ-uzg">
-            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-            <autoresizingMask key="autoresizingMask"/>
-            <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lvH-AJ-nGf">
-                    <rect key="frame" x="3" y="83" width="38" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="mvA-kP-QBj">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-            </subviews>
-        </view>
-        <arrayController id="mJT-OO-Fjs"/>
+        </customObject>
     </objects>
 </document>

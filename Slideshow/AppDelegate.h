@@ -8,13 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class MyWindowController;
+
 @interface AppDelegate : NSObject <NSApplicationDelegate>
-
-- (IBAction)chooseSource:(id)sender;
-
-- (void)scanSource:(NSURL*)url;
-
-- (BOOL)isMedia:(NSURL*)url;
+{
+    MyWindowController *myWindowController;
+}
 
 @end
 
