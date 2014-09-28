@@ -16,6 +16,8 @@
 		76CDF1E519D8A00600433B55 /* MyWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CDF1E319D8A00600433B55 /* MyWindowController.m */; };
 		76CDF1F119D8A58900433B55 /* Collection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76CDF1ED19D8A58900433B55 /* Collection.xib */; };
 		76CDF1F219D8A58900433B55 /* IconViewPrototype.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76CDF1EF19D8A58900433B55 /* IconViewPrototype.xib */; };
+		76CDF1F419D8BC7E00433B55 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76CDF1F319D8BC7E00433B55 /* AVFoundation.framework */; };
+		76CDF1F619D8BEFB00433B55 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76CDF1F519D8BEFB00433B55 /* CoreMedia.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		76CDF1E319D8A00600433B55 /* MyWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWindowController.m; sourceTree = "<group>"; };
 		76CDF1EE19D8A58900433B55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Collection.xib; sourceTree = "<group>"; };
 		76CDF1F019D8A58900433B55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IconViewPrototype.xib; sourceTree = "<group>"; };
+		76CDF1F319D8BC7E00433B55 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		76CDF1F519D8BEFB00433B55 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +56,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76CDF1F619D8BEFB00433B55 /* CoreMedia.framework in Frameworks */,
+				76CDF1F419D8BC7E00433B55 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +110,8 @@
 		76299B9D19D4C8A600992CAB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				76CDF1F519D8BEFB00433B55 /* CoreMedia.framework */,
+				76CDF1F319D8BC7E00433B55 /* AVFoundation.framework */,
 				76299B9E19D4C8A600992CAB /* Info.plist */,
 				76299B9F19D4C8A600992CAB /* main.m */,
 			);

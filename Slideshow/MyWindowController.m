@@ -72,12 +72,29 @@
             // handle error
         }
         else if (! [isDirectory boolValue]) {
-            if ([self isMedia:url])
-            {
+            NSString *type = [MyWindowController isMedia:url];
+            if (type) {
+                NSImage *thumb;
+                
+                if ([type isEqualTo:@"Video"]) {
+                    thumb = [MyWindowController thumbnailImageForVideo:url atTime:0];
+                } else {
+                    NSImage *originalImage = [[NSImage alloc] initWithContentsOfURL:url];
+                    thumb = [[NSImage alloc]initWithSize:NSMakeSize(67, 67)];
+                    
+                    NSSize originalSize = [originalImage size];
+                    NSRect fromRect = NSMakeRect(0, 0, originalSize.width, originalSize.height);
+                    
+                    [thumb lockFocus];
+                    
+                    [originalImage drawInRect:NSMakeRect(0, 0, 67, 67) fromRect:fromRect operation:NSCompositeCopy fraction:1.0f];
+                    
+                    [thumb unlockFocus];
+                }
                 
                 [tempArray addObject: [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                        [url absoluteString], KEY_NAME,
-                                       [[NSImage alloc] initWithContentsOfURL:url], KEY_IMAGE,
+                                       thumb, KEY_IMAGE,
                                        nil]];
             }
         }
@@ -86,7 +103,7 @@
     [viewController setImages:tempArray];
 }
 
-- (BOOL)isMedia:(NSURL*)url {
++ (id)isMedia:(NSURL*)url {
     NSString *file = [url absoluteString]; // path to some file
     CFStringRef fileExtension = (__bridge CFStringRef) [file pathExtension];
     CFStringRef fileUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension, NULL);
@@ -94,10 +111,41 @@
     //    CFRelease(fileUTI);
     //    CFRelease(fileExtension);
     
-    if (UTTypeConformsTo(fileUTI, kUTTypeImage)) return YES;
-    else if (UTTypeConformsTo(fileUTI, kUTTypeMovie)) return YES;
+    if (UTTypeConformsTo(fileUTI, kUTTypeImage)) {
+        return @"Image";
+    }
+    
+    if (UTTypeConformsTo(fileUTI, kUTTypeMovie)) {
+        return @"Video";
+    }
     
     return NO;
 }
 
++ (NSImage *)thumbnailImageForVideo:(NSURL *)videoURL
+                             atTime:(NSTimeInterval)time {
+    
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
+    
+    NSParameterAssert(asset);
+    
+    AVAssetImageGenerator *generator = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    generator.appliesPreferredTrackTransform = YES;
+    generator.apertureMode = AVAssetImageGeneratorApertureModeEncodedPixels;
+    
+    CGImageRef thumbnailImageRef = NULL;
+    CFTimeInterval thumbnailImageTime = time;
+    
+    NSError *igError = nil;
+    thumbnailImageRef = [generator copyCGImageAtTime:CMTimeMake(thumbnailImageTime, 60)
+                                          actualTime:NULL
+                                               error:&igError];
+    
+    if (!thumbnailImageRef)
+        NSLog(@"thumbnailImageGenerationError %@", igError );
+    
+    NSImage *thumbnailImage = thumbnailImageRef ? [[NSImage alloc] initWithCGImage:thumbnailImageRef size:NSMakeSize(67, 67)] : nil;
+    
+    return thumbnailImage;
+}
 @end

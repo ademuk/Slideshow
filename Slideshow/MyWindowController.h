@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <AVFoundation/AVFoundation.h>
 
 #import "MyViewController.h"
 
@@ -17,9 +18,5 @@
 }
 
 - (IBAction)chooseSource:(id)sender;
-
-// Need to be here?
-- (void)scanSource:(NSURL*)url;
-- (BOOL)isMedia:(NSURL*)url;
 
 @end
