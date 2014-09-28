@@ -10,9 +10,6 @@
 
 @implementation IconViewBox
 
-// -------------------------------------------------------------------------------
-//	hitTest:aPoint
-// -------------------------------------------------------------------------------
 - (NSView *)hitTest:(NSPoint)aPoint
 {
     // don't allow any mouse clicks for subviews in this NSBox
@@ -24,24 +21,14 @@
 
 @implementation MyScrollView
 
-// -------------------------------------------------------------------------------
-//	awakeFromNib
-// -------------------------------------------------------------------------------
 - (void)awakeFromNib
 {
-    // set up the background gradient for this custom scrollView
-    backgroundGradient = [[NSGradient alloc] initWithStartingColor:
-                          [NSColor colorWithDeviceRed:0.349f green:0.6f blue:0.898f alpha:0.0f]
-                                endingColor:[NSColor colorWithDeviceRed:0.349f green:0.6f blue:.898f alpha:0.6f]];
+    
 }
 
-// -------------------------------------------------------------------------------
-//	drawRect:rect
-// -------------------------------------------------------------------------------
 - (void)drawRect:(NSRect)rect
 {
-    // draw our special background as a gradient
-    [backgroundGradient drawInRect:[self documentVisibleRect] angle:90.0f];
+    
 }
 
 @end
@@ -54,9 +41,6 @@
 #define KEY_IMAGE	@"icon"
 #define KEY_NAME	@"name"
 
-// -------------------------------------------------------------------------------
-//	awakeFromNib
-// -------------------------------------------------------------------------------
 - (void)awakeFromNib
 {
     [self setSortingMode:0];		// icon collection in ascending sort order
@@ -64,9 +48,6 @@
     [collectionView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
 }
 
-// -------------------------------------------------------------------------------
-//	setSortingMode:newMode
-// -------------------------------------------------------------------------------
 - (void)setSortingMode:(NSUInteger)newMode
 {
     sortingMode = newMode;

@@ -669,10 +669,10 @@
         <window title="Slideshow" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="360"/>
+            <rect key="contentRect" x="335" y="390" width="500" height="360"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="500" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" id="QUE-qJ-cEs">
@@ -687,7 +687,7 @@
                         </buttonCell>
                     </button>
                     <button verticalHuggingPriority="750" id="7LE-jm-E7a">
-                        <rect key="frame" x="356" y="326" width="124" height="32"/>
+                        <rect key="frame" x="376" y="326" width="124" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Start Slideshow" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4Ib-j5-yWe">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -695,11 +695,12 @@
                         </buttonCell>
                     </button>
                     <customView id="FeA-cn-m65">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="327"/>
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="327"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </customView>
                 </subviews>
             </view>
+            <point key="canvasLocation" x="151" y="158"/>
         </window>
         <customObject id="hDJ-5p-Dhe" userLabel="WindowController" customClass="MyWindowController">
             <connections>

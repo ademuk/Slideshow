@@ -12,9 +12,6 @@
 @end
 
 @interface MyScrollView : NSScrollView
-{
-    NSGradient *backgroundGradient;
-}
 @end
 
 @interface MyViewController : NSViewController <NSCollectionViewDelegate>

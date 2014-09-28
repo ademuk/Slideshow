@@ -18,6 +18,7 @@
 		76CDF1F219D8A58900433B55 /* IconViewPrototype.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76CDF1EF19D8A58900433B55 /* IconViewPrototype.xib */; };
 		76CDF1F419D8BC7E00433B55 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76CDF1F319D8BC7E00433B55 /* AVFoundation.framework */; };
 		76CDF1F619D8BEFB00433B55 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76CDF1F519D8BEFB00433B55 /* CoreMedia.framework */; };
+		76CDF1F919D8C9C700433B55 /* NSImage+NSImageResizeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CDF1F819D8C9C700433B55 /* NSImage+NSImageResizeAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,8 @@
 		76CDF1F019D8A58900433B55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IconViewPrototype.xib; sourceTree = "<group>"; };
 		76CDF1F319D8BC7E00433B55 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		76CDF1F519D8BEFB00433B55 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		76CDF1F719D8C9C700433B55 /* NSImage+NSImageResizeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+NSImageResizeAdditions.h"; sourceTree = "<group>"; };
+		76CDF1F819D8C9C700433B55 /* NSImage+NSImageResizeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+NSImageResizeAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +117,8 @@
 				76CDF1F319D8BC7E00433B55 /* AVFoundation.framework */,
 				76299B9E19D4C8A600992CAB /* Info.plist */,
 				76299B9F19D4C8A600992CAB /* main.m */,
+				76CDF1F719D8C9C700433B55 /* NSImage+NSImageResizeAdditions.h */,
+				76CDF1F819D8C9C700433B55 /* NSImage+NSImageResizeAdditions.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -240,6 +245,7 @@
 				76CDF1E519D8A00600433B55 /* MyWindowController.m in Sources */,
 				76299BA319D4C8A600992CAB /* AppDelegate.m in Sources */,
 				76299BA019D4C8A600992CAB /* main.m in Sources */,
+				76CDF1F919D8C9C700433B55 /* NSImage+NSImageResizeAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
