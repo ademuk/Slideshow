@@ -41,6 +41,17 @@
 #define KEY_IMAGE	@"icon"
 #define KEY_NAME	@"name"
 
+- (id)init
+{
+    self = [super init];
+    if (self != nil)
+    {
+        _selectedIndexes = [[NSIndexSet alloc] init];
+        _selectedImages = [[NSArray alloc] init];
+    }
+    return self;
+}
+
 - (void)awakeFromNib
 {
     [self setSortingMode:0];		// icon collection in ascending sort order
@@ -57,6 +68,26 @@
                               selector:@selector(caseInsensitiveCompare:)];
     [arrayController setSortDescriptors:[NSArray arrayWithObject:sort]];
 }
+
+//- (void)setSelectedIndexes:(NSIndexSet *)indexSet
+//{
+//    if (indexSet != _selectedIndexes)
+//    {
+//        indexSet = [indexSet copy];
+//        _selectedIndexes = indexSet;
+//        self.selectedImages = [self.images objectsAtIndexes:indexSet];
+//    }
+//}
+//
+//- (void)setSelectedImages:(NSArray *)array
+//{
+//    if (array != _selectedImages)
+//    {
+//        array = [array copy];
+//        _selectedImages = array;
+//        //[self.previewPanel reloadData];
+//    }
+//}
 
 // -------------------------------------------------------------------------------
 //	collectionView:writeItemsAtIndexes:indexes:pasteboard

@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Adem Gaygusuz. All rights reserved.
 //
 
+#import <Quartz/Quartz.h>
 #import "MyWindowController.h"
 #import "NSImage+NSImageResizeAdditions.h"
 
@@ -14,9 +15,6 @@
 #define KEY_IMAGE	@"icon"
 #define KEY_NAME	@"name"
 
-// -------------------------------------------------------------------------------
-//	awakeFromNib:
-// -------------------------------------------------------------------------------
 - (void)awakeFromNib
 {
     [[self window] setAutorecalculatesContentBorderThickness:YES forEdge:NSMinYEdge];
@@ -24,15 +22,15 @@
     
     // load our nib that contains the collection view
     [self willChangeValueForKey:@"viewController"];
-    viewController = [[MyViewController alloc] initWithNibName:@"Collection" bundle:nil];
+    self.viewController = [[MyViewController alloc] initWithNibName:@"Collection" bundle:nil];
     [self didChangeValueForKey:@"viewController"];
-    
-    [myTargetView addSubview:[viewController view]];
+    NSCollectionView * view = [self.viewController view];
+    [self.myTargetView addSubview:view];
     
     // make sure we resize the viewController's view to match its super view
-    [[viewController view] setFrame:[myTargetView bounds]];
+    [[self.viewController view] setFrame:[self.myTargetView bounds]];
     
-    [viewController setSortingMode:0];		// ascending sort order
+    [self.viewController setSortingMode:0];		// ascending sort order
 }
 
 - (IBAction)chooseSource:(id)sender {
@@ -85,7 +83,7 @@
         }
     }
     
-    [viewController setImages:tempArray];
+    [self.viewController setImages:tempArray];
 }
 
 + (id)fileTypeOfURL:(NSURL*)url {
@@ -107,7 +105,7 @@
     return NO;
 }
 
-+  (NSImage *)thumbnailForURL:(NSURL *)url
++ (NSImage *)thumbnailForURL:(NSURL *)url
                           ofType:(NSString *)type {
     NSImage *thumb;
     
@@ -141,6 +139,124 @@
     NSImage *thumbnailImage = [[NSImage alloc] initWithCGImage:thumbnailImageRef size:NSMakeSize(CGImageGetWidth(thumbnailImageRef), CGImageGetHeight(thumbnailImageRef))];
     
     return thumbnailImage;
+}
+
+- (IBAction)togglePreviewPanel:(id)previewPanel
+{
+    if ([QLPreviewPanel sharedPreviewPanelExists] && [[QLPreviewPanel sharedPreviewPanel] isVisible])
+    {
+        [[QLPreviewPanel sharedPreviewPanel] orderOut:nil];
+    }
+    else
+    {
+        [[QLPreviewPanel sharedPreviewPanel] makeKeyAndOrderFront:nil];
+    }
+}
+
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+{
+    SEL action = [menuItem action];
+    if (action == @selector(togglePreviewPanel:))
+    {
+        if ([QLPreviewPanel sharedPreviewPanelExists] && [[QLPreviewPanel sharedPreviewPanel] isVisible])
+        {
+            [menuItem setTitle:@"Close Quick Look panel"];
+        }
+        else
+        {
+            [menuItem setTitle:@"Open Quick Look panel"];
+        }
+        return YES;
+    }
+    return NO;
+}
+
+#pragma mark - Quick Look panel support
+
+- (BOOL)acceptsPreviewPanelControl:(QLPreviewPanel *)panel
+{
+    return YES;
+}
+
+- (void)beginPreviewPanelControl:(QLPreviewPanel *)panel
+{
+    // This document is now responsible of the preview panel
+    // It is allowed to set the delegate, data source and refresh panel.
+    //
+    _previewPanel = panel;
+    panel.delegate = self;
+    panel.dataSource = self;
+}
+
+- (void)endPreviewPanelControl:(QLPreviewPanel *)panel
+{
+    // This document loses its responsisibility on the preview panel
+    // Until the next call to -beginPreviewPanelControl: it must not
+    // change the panel's delegate, data source or refresh it.
+    //
+    _previewPanel = nil;
+}
+
+
+#pragma mark - QLPreviewPanelDataSource
+
+- (NSInteger)numberOfPreviewItemsInPreviewPanel:(QLPreviewPanel *)panel
+{
+    return self.viewController.selectedImages.count;
+}
+
+- (id <QLPreviewItem>)previewPanel:(QLPreviewPanel *)panel previewItemAtIndex:(NSInteger)index
+{
+    return (self.viewController.selectedImages)[index];
+}
+
+
+#pragma mark - QLPreviewPanelDelegate
+
+- (BOOL)previewPanel:(QLPreviewPanel *)panel handleEvent:(NSEvent *)event
+{
+    // redirect all key down events to the table view
+    if ([event type] == NSKeyDown)
+    {
+        [self.myTargetView keyDown:event];
+        return YES;
+    }
+    return NO;
+}
+
+// This delegate method provides the rect on screen from which the panel will zoom.
+- (NSRect)previewPanel:(QLPreviewPanel *)panel sourceFrameOnScreenForPreviewItem:(id <QLPreviewItem>)item
+{
+    NSInteger index = [self.viewController.images indexOfObject:item];
+    if (index == NSNotFound)
+    {
+        return NSZeroRect;
+    }
+    
+    NSRect iconRect = [self.myTargetView frameForItemAtIndex:index];
+    
+    // check that the icon rect is visible on screen
+    NSRect visibleRect = [self.myTargetView visibleRect];
+    
+    if (!NSIntersectsRect(visibleRect, iconRect))
+    {
+        return NSZeroRect;
+    }
+    
+    // convert icon rect to screen coordinates
+    iconRect = [self.myTargetView convertRectToBacking:iconRect];
+    iconRect.origin = [[self.myTargetView window] convertBaseToScreen:iconRect.origin];
+    
+    return iconRect;
+}
+
+// this delegate method provides a transition image between the table view and the preview panel
+//
+- (id)previewPanel:(QLPreviewPanel *)panel transitionImageForPreviewItem:(id <QLPreviewItem>)item contentRect:(NSRect *)contentRect
+{
+    NSDictionary *dictionary = (NSDictionary *)item;
+    
+    return [dictionary valueForKey:KEY_IMAGE];
 }
 
 @end

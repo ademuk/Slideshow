@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Adem Gaygusuz. All rights reserved.
 //
 
-#import <AppKit/NSImage.h>
+#import <Cocoa/Cocoa.h>
 
 @interface NSImage (ResizeAdditions)
 - (NSImage *)imageByScalingProportionallyToSize:(NSSize)targetSize;

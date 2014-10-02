@@ -23,7 +23,9 @@
     NSUInteger sortingMode;
 }
 
-@property (retain) NSMutableArray *images;
+@property (strong) NSMutableArray *images;
 @property (nonatomic, assign) NSUInteger sortingMode;
+@property (nonatomic, copy) NSArray *selectedImages;
+@property (nonatomic, copy) NSIndexSet *selectedIndexes;
 
 @end
