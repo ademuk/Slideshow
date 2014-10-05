@@ -41,44 +41,47 @@ static NSString * const kContentImageKey = @"itemImage";
 }
 
 - (void)loadView {
-    self.view = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 300, 300)];
-    [self.view setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
+    int resizeMask = (NSViewWidthSizable | NSViewHeightSizable);
     
-    self.gridView = [[CNGridView alloc] initWithFrame:self.view.frame];
+    self.view = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 500, 500)];
+    [self.view setAutoresizingMask:resizeMask];
     
-    [self.gridView setDataSource:self];
-    [self.gridView setDelegate:self];
+    CGSize viewSize = self.view.frame.size;
     
-    [self.gridView setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
-    [self.gridView setItemSize:NSMakeSize(100, 100)];
-    
-    self.scrollView = [[NSScrollView alloc] initWithFrame:self.view.frame];
-    [self.scrollView setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
-    
-    [self.scrollView setDocumentView:self.gridView];
-    
-    self.chooseSourceButton = [[NSButton alloc] initWithFrame:NSMakeRect(5, 5, 150, 35)];
+    self.chooseSourceButton = [[NSButton alloc] initWithFrame:NSMakeRect(0, 0, 150, 35)];
     [self.chooseSourceButton setTitle:@"Choose Source"];
-    [self.chooseSourceButton setButtonType:NSMomentaryLightButton]; //Set what type button You want
     [self.chooseSourceButton setBezelStyle:NSRoundedBezelStyle];
     [self.chooseSourceButton setTarget:self];
     [self.chooseSourceButton setAction:@selector(chooseSourceAction:)];
     
+    self.startSlideshowButton = [[NSButton alloc] initWithFrame:NSMakeRect(viewSize.width - 150, 0, 150, 35)];
+    [self.startSlideshowButton setTitle:@"Start Slideshow"];
+    [self.startSlideshowButton setBezelStyle:NSRoundedBezelStyle];
+    [self.startSlideshowButton setTarget:self];
+    [self.startSlideshowButton setAction:@selector(startSlideshowAction:)];
+    [self.startSlideshowButton setAutoresizingMask:NSViewMinXMargin];
+    
+    int buttonHeight = self.chooseSourceButton.bounds.size.height + self.chooseSourceButton.frame.origin.y;
+    
+    self.scrollView = [[NSScrollView alloc] initWithFrame:NSMakeRect(0, buttonHeight, viewSize.width, viewSize.height - buttonHeight)];
+    [self.scrollView setAutoresizingMask:resizeMask];
+    
+    self.gridView = [[CNGridView alloc] initWithFrame:self.scrollView.frame];
+    
+    [self.gridView setDataSource:self];
+    [self.gridView setDelegate:self];
+    
+    [self.gridView setAutoresizingMask:resizeMask];
+    [self.gridView setItemSize:NSMakeSize(100, 100)];
+    
+    [self.scrollView setDocumentView:self.gridView];
+    
     [self.view addSubview:self.scrollView];
     [self.view addSubview:self.chooseSourceButton];
+    [self.view addSubview:self.startSlideshowButton];
     
     self.hoverLayout.backgroundColor = [[NSColor grayColor] colorWithAlphaComponent:0.42];
     self.selectionLayout.backgroundColor = [NSColor colorWithCalibratedRed:0.542 green:0.699 blue:0.807 alpha:0.420];
-    
-    [self.items addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                           [NSImage imageNamed:NSImageNameComputer], kContentImageKey,
-                           NSImageNameComputer, kContentTitleKey,
-                           nil]];
-//    [self.items addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-//                           [NSImage imageNamed:NSImageNameNetwork], kContentImageKey,
-//                           NSImageNameNetwork, kContentTitleKey,
-//                           nil]];
-
     
     [self.gridView reloadData];
 }
@@ -193,7 +196,7 @@ static NSString * const kContentImageKey = @"itemImage";
 }
 
 - (void)startSlideshowAction:(id)sender {
-    
+    NSLog(@"Start Slideshow!");
 }
 
 #pragma mark - CNGridView DataSource

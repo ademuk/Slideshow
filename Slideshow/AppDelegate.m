@@ -18,7 +18,8 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     self.viewController = [[SlideshowViewController alloc] init];
     
-    [self.window.contentView addSubview:self.viewController.view];    
+    [self.window.contentView addSubview:self.viewController.view];
+    [self.viewController.view setFrameSize:self.window.frame.size];
 }
 
 @end
