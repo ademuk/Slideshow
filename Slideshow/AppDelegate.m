@@ -20,6 +20,11 @@
     
     [self.window.contentView addSubview:self.viewController.view];
     [self.viewController.view setFrameSize:self.window.frame.size];
+    
+    NSResponder *aNextResponder = [self.window nextResponder];
+    
+    [self.window setNextResponder:self.viewController];
+    [self.viewController setNextResponder:aNextResponder];
 }
 
 @end

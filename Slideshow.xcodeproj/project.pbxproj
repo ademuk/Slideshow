@@ -13,6 +13,7 @@
 		76299BA819D4C8A600992CAB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76299BA619D4C8A600992CAB /* MainMenu.xib */; };
 		76299BB419D4C8A600992CAB /* SlideshowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 76299BB319D4C8A600992CAB /* SlideshowTests.m */; };
 		76CAA59B19E00FBF005D4B69 /* SlideshowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CAA59A19E00FBF005D4B69 /* SlideshowViewController.m */; };
+		76CAA59E19E1CDD0005D4B69 /* SlideshowItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CAA59D19E1CDD0005D4B69 /* SlideshowItem.m */; };
 		76CDF1F419D8BC7E00433B55 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76CDF1F319D8BC7E00433B55 /* AVFoundation.framework */; };
 		76CDF1F619D8BEFB00433B55 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76CDF1F519D8BEFB00433B55 /* CoreMedia.framework */; };
 		76CDF1F919D8C9C700433B55 /* NSImage+NSImageResizeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CDF1F819D8C9C700433B55 /* NSImage+NSImageResizeAdditions.m */; };
@@ -43,6 +44,8 @@
 		76299BB319D4C8A600992CAB /* SlideshowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlideshowTests.m; sourceTree = "<group>"; };
 		76CAA59919E00FBF005D4B69 /* SlideshowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideshowViewController.h; sourceTree = "<group>"; };
 		76CAA59A19E00FBF005D4B69 /* SlideshowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideshowViewController.m; sourceTree = "<group>"; };
+		76CAA59C19E1CDD0005D4B69 /* SlideshowItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideshowItem.h; sourceTree = "<group>"; };
+		76CAA59D19E1CDD0005D4B69 /* SlideshowItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideshowItem.m; sourceTree = "<group>"; };
 		76CDF1F319D8BC7E00433B55 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		76CDF1F519D8BEFB00433B55 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		76CDF1F719D8C9C700433B55 /* NSImage+NSImageResizeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+NSImageResizeAdditions.h"; sourceTree = "<group>"; };
@@ -99,6 +102,8 @@
 				76299BA219D4C8A600992CAB /* AppDelegate.m */,
 				76CAA59919E00FBF005D4B69 /* SlideshowViewController.h */,
 				76CAA59A19E00FBF005D4B69 /* SlideshowViewController.m */,
+				76CAA59C19E1CDD0005D4B69 /* SlideshowItem.h */,
+				76CAA59D19E1CDD0005D4B69 /* SlideshowItem.m */,
 				76299BA619D4C8A600992CAB /* MainMenu.xib */,
 				76299BA419D4C8A600992CAB /* Images.xcassets */,
 				76299B9D19D4C8A600992CAB /* Supporting Files */,
@@ -288,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76CAA59E19E1CDD0005D4B69 /* SlideshowItem.m in Sources */,
 				76299BA319D4C8A600992CAB /* AppDelegate.m in Sources */,
 				76CAA59B19E00FBF005D4B69 /* SlideshowViewController.m in Sources */,
 				76299BA019D4C8A600992CAB /* main.m in Sources */,

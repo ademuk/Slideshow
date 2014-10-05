@@ -6,13 +6,16 @@
 //  Copyright (c) 2014 Adem Gaygusuz. All rights reserved.
 //
 
+#import <Quartz/Quartz.h>
+
 #import "SlideshowViewController.h"
+#import "SlideshowItem.h"
+
+#import "CNGridView.h"
 #import "CNGridViewItem.h"
 #import "CNGridViewItemLayout.h"
-#import "CNGridView.h"
 
-static NSString * const kContentTitleKey = @"itemTitle";
-static NSString * const kContentImageKey = @"itemImage";
+#import "NSImage+NSImageResizeAdditions.h"
 
 @interface SlideshowViewController ()
     @property (strong, nonatomic) NSScrollView *scrollView;
@@ -20,11 +23,36 @@ static NSString * const kContentImageKey = @"itemImage";
     @property (strong, nonatomic) NSButton *chooseSourceButton;
     @property (strong, nonatomic) NSButton *startSlideshowButton;
     @property (strong, nonatomic) NSMutableArray *items;
+    @property (strong, nonatomic) NSArray *selectedItems;
 
     @property (strong) CNGridViewItemLayout *defaultLayout;
     @property (strong) CNGridViewItemLayout *hoverLayout;
     @property (strong) CNGridViewItemLayout *selectionLayout;
+
+    @property (strong) QLPreviewPanel *previewPanel;
 @end
+
+@interface SlideshowItem (QLPreviewItem) <QLPreviewItem>
+
+@end
+
+#pragma mark -
+
+@implementation SlideshowItem (QLPreviewItem)
+
+- (NSURL *)previewItemURL
+{
+    return self.imageURL;
+}
+
+- (NSString *)previewItemTitle
+{
+    return self.title;
+}
+
+@end
+
+#pragma mark -
 
 @implementation SlideshowViewController
 
@@ -112,8 +140,6 @@ static NSString * const kContentImageKey = @"itemImage";
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSArray *keys = [NSArray arrayWithObject:NSURLIsDirectoryKey];
     
-    //NSMutableArray *tempArray = [[NSMutableArray alloc] init];
-    
     NSDirectoryEnumerator *enumerator = [fileManager
                                          enumeratorAtURL:url
                                          includingPropertiesForKeys:keys
@@ -134,11 +160,9 @@ static NSString * const kContentImageKey = @"itemImage";
             NSString *type = [SlideshowViewController fileTypeOfURL:url];
             if (type) {
                 NSImage *thumb = [SlideshowViewController thumbnailForURL:url ofType:type];
+                SlideshowItem *item = [[SlideshowItem alloc] initWithTitle:[[url path] lastPathComponent] image:thumb url:url];
                 
-                [self.items addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                                       thumb, kContentImageKey,
-                                       [[url path] lastPathComponent], kContentTitleKey,
-                                       nil]];
+                [self.items addObject:item];
             }
         }
     }
@@ -199,7 +223,20 @@ static NSString * const kContentImageKey = @"itemImage";
 }
 
 - (void)startSlideshowAction:(id)sender {
-    NSLog(@"Start Slideshow!");
+    [self togglePreviewPanel];
+}
+
+- (void)togglePreviewPanel
+{
+    if ([QLPreviewPanel sharedPreviewPanelExists] && [[QLPreviewPanel sharedPreviewPanel] isVisible])
+    {
+        [[QLPreviewPanel sharedPreviewPanel] orderOut:nil];
+    }
+    else
+    {
+        [[QLPreviewPanel sharedPreviewPanel] makeKeyAndOrderFront:nil];
+        [[QLPreviewPanel sharedPreviewPanel] enterFullScreenMode:[NSScreen mainScreen] withOptions:nil];
+    }
 }
 
 #pragma mark - CNGridView DataSource
@@ -218,35 +255,88 @@ static NSString * const kContentImageKey = @"itemImage";
     item.hoverLayout = self.hoverLayout;
     item.selectionLayout = self.selectionLayout;
     
-    NSDictionary *contentDict = [self.items objectAtIndex:index];
-    item.itemTitle = [contentDict objectForKey:kContentTitleKey];
-    item.itemImage = [contentDict objectForKey:kContentImageKey];
-
-    NSLog(@"%@ %lu", item.itemTitle, index);
+    SlideshowItem *slideshowItem = [self.items objectAtIndex:index];
+    item.itemTitle = [slideshowItem title];
+    item.itemImage = [slideshowItem image];
     
     return item;
 }
 
 #pragma mark - CNGridView Delegate
 
-- (void)gridView:(CNGridView *)gridView didClickItemAtIndex:(NSUInteger)index inSection:(NSUInteger)section {
-    NSLog(@"didClickItemAtIndex: %li", index);
-}
-
-- (void)gridView:(CNGridView *)gridView didDoubleClickItemAtIndex:(NSUInteger)index inSection:(NSUInteger)section {
-    NSLog(@"didDoubleClickItemAtIndex: %li", index);
-}
-
-- (void)gridView:(CNGridView *)gridView didActivateContextMenuWithIndexes:(NSIndexSet *)indexSet inSection:(NSUInteger)section {
-    NSLog(@"rightMouseButtonClickedOnItemAtIndex: %@", indexSet);
-}
-
-- (void)gridView:(CNGridView *)gridView didSelectItemAtIndex:(NSUInteger)index inSection:(NSUInteger)section {
-    NSLog(@"didSelectItemAtIndex: %li", index);
+- (void)gridView:(CNGridView *)gridView didSelectItemAtIndex:(NSUInteger)index inSection:(NSUInteger)section {    
+    [self setSelectedItems:[self.items objectsAtIndexes:[self.gridView selectedIndexes]]];
+    
+    [self.previewPanel reloadData];
 }
 
 - (void)gridView:(CNGridView *)gridView didDeselectItemAtIndex:(NSUInteger)index inSection:(NSUInteger)section {
-    NSLog(@"didDeselectItemAtIndex: %li", index);
+    [self setSelectedItems:[self.items objectsAtIndexes:[self.gridView selectedIndexes]]];
+    
+    [self.previewPanel reloadData];
+}
+
+#pragma mark - Quick Look panel support
+
+- (BOOL)acceptsPreviewPanelControl:(QLPreviewPanel *)panel
+{
+    return YES;
+}
+
+- (void)beginPreviewPanelControl:(QLPreviewPanel *)panel
+{
+    // This document is now responsible of the preview panel
+    // It is allowed to set the delegate, data source and refresh panel.
+    //
+    [self setPreviewPanel:panel];
+    [panel setDelegate:self];
+    [panel setDataSource:self];
+}
+
+- (void)endPreviewPanelControl:(QLPreviewPanel *)panel
+{
+    // This document loses its responsisibility on the preview panel
+    // Until the next call to -beginPreviewPanelControl: it must not
+    // change the panel's delegate, data source or refresh it.
+    //
+    [self setPreviewPanel:nil];
+}
+
+
+#pragma mark - QLPreviewPanelDataSource
+
+- (NSInteger)numberOfPreviewItemsInPreviewPanel:(QLPreviewPanel *)panel
+{
+
+    return self.selectedItems.count;
+}
+
+- (id <QLPreviewItem>)previewPanel:(QLPreviewPanel *)panel previewItemAtIndex:(NSInteger)index
+{
+    return (self.selectedItems)[index];
+}
+
+
+#pragma mark - QLPreviewPanelDelegate
+
+- (BOOL)previewPanel:(QLPreviewPanel *)panel handleEvent:(NSEvent *)event
+{
+    // redirect all key down events to the table view
+    if ([event type] == NSKeyDown)
+    {
+        [self.gridView keyDown:event];
+        return YES;
+    }
+    return NO;
+}
+
+// this delegate method provides a transition image between the table view and the preview panel
+
+- (id)previewPanel:(QLPreviewPanel *)panel transitionImageForPreviewItem:(id <QLPreviewItem>)item contentRect:(NSRect *)contentRect
+{
+    SlideshowItem *slideshowItem = (SlideshowItem *)item;
+    
+    return slideshowItem.image;
 }
 
 @end

@@ -11,8 +11,7 @@
 #import <Quartz/Quartz.h>
 
 #import "CNGridView.h"
-#import "NSImage+NSImageResizeAdditions.h"
 
-@interface SlideshowViewController : NSViewController <CNGridViewDataSource, CNGridViewDelegate>
+@interface SlideshowViewController : NSViewController <CNGridViewDataSource, CNGridViewDelegate, QLPreviewPanelDataSource, QLPreviewPanelDelegate>
 
 @end
