@@ -105,7 +105,7 @@
     [self.gridView setAllowsMultipleSelection:YES];
     [self.gridView setAllowsMultipleSelectionWithDrag:YES];
     
-    [self.gridView setAutoresizingMask:resizeMask];
+    [self.gridView setAutoresizingMask:NSViewWidthSizable];
     [self.gridView setItemSize:NSMakeSize(100, 100)];
     
     [self.scrollView setDocumentView:self.gridView];
