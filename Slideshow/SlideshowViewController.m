@@ -63,13 +63,17 @@ static NSString * const kContentImageKey = @"itemImage";
     
     int buttonHeight = self.chooseSourceButton.bounds.size.height + self.chooseSourceButton.frame.origin.y;
     
-    self.scrollView = [[NSScrollView alloc] initWithFrame:NSMakeRect(0, buttonHeight, viewSize.width, viewSize.height - buttonHeight)];
+    self.scrollView = [[NSScrollView alloc] initWithFrame:NSMakeRect(0, buttonHeight, viewSize.width, viewSize.height - (buttonHeight * 2))];
     [self.scrollView setAutoresizingMask:resizeMask];
     
     self.gridView = [[CNGridView alloc] initWithFrame:self.scrollView.frame];
     
     [self.gridView setDataSource:self];
     [self.gridView setDelegate:self];
+    
+    [self.gridView setAllowsSelection:YES];
+    [self.gridView setAllowsMultipleSelection:YES];
+    [self.gridView setAllowsMultipleSelectionWithDrag:YES];
     
     [self.gridView setAutoresizingMask:resizeMask];
     [self.gridView setItemSize:NSMakeSize(100, 100)];
