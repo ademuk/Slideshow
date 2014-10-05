@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6245"/>
     </dependencies>
@@ -674,41 +674,8 @@
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="500" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <button verticalHuggingPriority="750" id="QUE-qJ-cEs">
-                        <rect key="frame" x="0.0" y="326" width="132" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Choose source" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bBp-uZ-Prz">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                            <connections>
-                                <action selector="chooseSource:" target="hDJ-5p-Dhe" id="VK2-gY-JOK"/>
-                            </connections>
-                        </buttonCell>
-                    </button>
-                    <button verticalHuggingPriority="750" id="7LE-jm-E7a">
-                        <rect key="frame" x="376" y="326" width="124" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Start Slideshow" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4Ib-j5-yWe">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="togglePreviewPanel:" target="hDJ-5p-Dhe" id="aht-2A-twH"/>
-                        </connections>
-                    </button>
-                    <customView id="FeA-cn-m65">
-                        <rect key="frame" x="0.0" y="0.0" width="500" height="327"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </customView>
-                </subviews>
             </view>
             <point key="canvasLocation" x="151" y="158"/>
         </window>
-        <customObject id="hDJ-5p-Dhe" userLabel="WindowController" customClass="MyWindowController">
-            <connections>
-                <outlet property="myTargetView" destination="FeA-cn-m65" id="Udd-Jr-FaN"/>
-            </connections>
-        </customObject>
     </objects>
 </document>

@@ -8,12 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class MyWindowController;
+@class SlideshowViewController;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
-{
-    MyWindowController *myWindowController;
-}
+
+@property (assign) IBOutlet NSWindow *window;
 
 @end
 

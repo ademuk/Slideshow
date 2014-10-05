@@ -7,13 +7,18 @@
 //
 
 #import "AppDelegate.h"
-#import "MyWindowController.h"
+#import "SlideshowViewController.h"
+
+@interface AppDelegate ()
+    @property (strong, nonatomic) SlideshowViewController *viewController;
+@end
 
 @implementation AppDelegate
 
-- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
-{
-    return YES;
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    self.viewController = [[SlideshowViewController alloc] init];
+    
+    [self.window.contentView addSubview:self.viewController.view];    
 }
 
 @end
