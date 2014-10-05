@@ -61,9 +61,11 @@ static NSString * const kContentImageKey = @"itemImage";
     [self.startSlideshowButton setAction:@selector(startSlideshowAction:)];
     [self.startSlideshowButton setAutoresizingMask:NSViewMinXMargin];
     
-    int buttonHeight = self.chooseSourceButton.bounds.size.height + self.chooseSourceButton.frame.origin.y;
+    int toolbarHeight = self.chooseSourceButton.bounds.size.height + self.chooseSourceButton.frame.origin.y;
+    // Move grid down, its position seems to be incorrectly offset
+    int gridOffset = 35;
     
-    self.scrollView = [[NSScrollView alloc] initWithFrame:NSMakeRect(0, buttonHeight, viewSize.width, viewSize.height - (buttonHeight * 2))];
+    self.scrollView = [[NSScrollView alloc] initWithFrame:NSMakeRect(0, toolbarHeight, viewSize.width, viewSize.height - toolbarHeight - gridOffset)];
     [self.scrollView setAutoresizingMask:resizeMask];
     
     self.gridView = [[CNGridView alloc] initWithFrame:self.scrollView.frame];
@@ -145,12 +147,9 @@ static NSString * const kContentImageKey = @"itemImage";
 }
 
 + (id)fileTypeOfURL:(NSURL*)url {
-    NSString *file = [url absoluteString]; // path to some file
+    NSString *file = [url absoluteString];
     CFStringRef fileExtension = (__bridge CFStringRef) [file pathExtension];
     CFStringRef fileUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension, NULL);
-    
-    //    CFRelease(fileUTI);
-    //    CFRelease(fileExtension);
     
     if (UTTypeConformsTo(fileUTI, kUTTypeImage)) {
         return @"Image";
@@ -220,7 +219,7 @@ static NSString * const kContentImageKey = @"itemImage";
     item.selectionLayout = self.selectionLayout;
     
     NSDictionary *contentDict = [self.items objectAtIndex:index];
-    item.itemTitle = [contentDict objectForKey:kContentTitleKey]; // [NSString stringWithFormat:@"Item: %lu", index];
+    item.itemTitle = [contentDict objectForKey:kContentTitleKey];
     item.itemImage = [contentDict objectForKey:kContentImageKey];
 
     NSLog(@"%@ %lu", item.itemTitle, index);
